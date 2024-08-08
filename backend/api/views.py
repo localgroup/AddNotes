@@ -6,6 +6,10 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Note
 
 
+def view_notes(request, pk):
+    pass
+
+
 class NoteListCreate(generics.ListCreateAPIView):
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated]
