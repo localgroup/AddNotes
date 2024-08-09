@@ -6,8 +6,22 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Note
 
 
-def view_notes(request, pk):
-    pass
+class NoteListDisplayView(generics.ListAPIView):
+    serializer_class = NoteSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Note.objects.filter(author=user)
+
+
+class NoteDetailView(generics.RetrieveAPIView):
+    serializer_class = NoteSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return Note.objects.get(pk=pk, author=self.request.user)
 
 
 class NoteListCreate(generics.ListCreateAPIView):
@@ -28,6 +42,7 @@ class NoteListCreate(generics.ListCreateAPIView):
 class NoteDelete(generics.DestroyAPIView):
     serializer_class = NoteSerializer
     permission_classes = [IsAuthenticated]
+    lookup_field = 'pk'
     
     def get_queryset(self):
         user = self.request.user

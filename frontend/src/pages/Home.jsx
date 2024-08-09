@@ -1,28 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import api from "../api";
 import Note from "../components/Note"
 import "../styles/Home.css"
-import FadeMenu from "../components/FadeMenu";
+
 
 export default function Home() {
     const [notes, setNotes] = useState([]);
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
-
-    // useEffect(() => {
-    //     getNotes();
-    // }, []);
-
-    // const getNotes = () => {
-    //     api
-    //         .get("/api/notes/")
-    //         .then((res) => res.data)
-    //         .then((data) => {
-    //             setNotes(data);
-    //             console.log(data);
-    //         })
-    //         .catch((err) => alert(err));
-    // };
 
     const deleteNote = (id) => {
         api
@@ -50,9 +35,7 @@ export default function Home() {
     return (
         <div>
             <div>
-                <div className="fade-menu">
-                    <FadeMenu />
-                </div>
+                
                 {notes.map((note) => (
                     <Note note={note} onDelete={deleteNote} key={note.id} />
                 ))}

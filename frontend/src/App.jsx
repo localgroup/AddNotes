@@ -5,6 +5,8 @@ import Home from "./pages/Home"
 import Register from "./pages/Register"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
+import FadeMenu from "./components/FadeMenu";
+import ListNotes from "./pages/ListNotes"
 
 
 function Logout() {
@@ -20,8 +22,12 @@ function RegisterAndLogout() {
 
 function App() {
   return (
-    <>
+    <>  
+
         <BrowserRouter>
+        <div className="fade-menu">
+          <FadeMenu />
+        </div>
         <Routes>
           <Route 
             path="/"
@@ -31,6 +37,8 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/" element={<Home />} />
+          <Route path="/notes" element={<ListNotes />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegisterAndLogout />} />
