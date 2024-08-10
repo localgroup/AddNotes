@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import FadeMenu from "./components/FadeMenu";
 import ListNotes from "./pages/ListNotes"
+import { ACCESS_TOKEN } from './constants'
 
 
 function Logout() {
@@ -17,6 +18,22 @@ function Logout() {
 function RegisterAndLogout() {
   localStorage.clear()
   return <Register />
+}
+
+function LoginRoute() {
+  const token = localStorage.getItem(ACCESS_TOKEN);
+  if (token) {
+    return <Navigate to="/" />;
+  }
+  return <Login />;
+}
+
+function HomeRoute() {
+  const token = localStorage.getItem(ACCESS_TOKEN);
+  if (token) {
+    return <Navigate to="/" />;
+  }
+  return <RegisterAndLogout />;
 }
 
 
@@ -37,11 +54,12 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route path="/" element={<Home />} />
           <Route path="/notes" element={<ListNotes />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginRoute />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/register" element={<RegisterAndLogout />} />
+          <Route path="/register" element={<HomeRoute />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </BrowserRouter>

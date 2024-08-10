@@ -6,11 +6,15 @@ import Fade from '@mui/material/Fade';
 import "../styles/FadeMenu.css"
 import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
+import useLoginStatus from '../hooks/useLoginStatus';
+import ProtectedRoute from './ProtectedRoute';
+
 
 export default function FadeMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
+  const { isLoggedIn, login, logout } = useLoginStatus();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -59,12 +63,23 @@ export default function FadeMenu() {
             bgcolor: 'grey.100',
           },
         }}>
+       
+          {isLoggedIn ? (
+            
+            <>
+            <ProtectedRoute>
+            <MenuItem onClick={() => handleMenuItemClick('/')}>Home</MenuItem>
+            <MenuItem onClick={() => logout()}>Logout</MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick('/notes')}>Notes</MenuItem>
+            </ProtectedRoute>
+            </>
+          ) : (
+            <>
+              <MenuItem onClick={() => login()}>Login</MenuItem>
+              <MenuItem onClick={() => handleMenuItemClick('/register')}>Register</MenuItem>
+            </>
+          )}
 
-          <MenuItem onClick={() => handleMenuItemClick('/')}>Home</MenuItem>
-          <MenuItem onClick={() => handleMenuItemClick('/notes')}>Notes</MenuItem>
-          <MenuItem onClick={() => handleMenuItemClick('/login')}>Login</MenuItem>
-          <MenuItem onClick={() => handleMenuItemClick('/register')}>Register</MenuItem>
-          <MenuItem onClick={() => handleMenuItemClick('/logout')}>Logout</MenuItem>
         </Box>
 
       </Menu>

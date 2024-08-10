@@ -43,7 +43,7 @@ export default function ProtectedRoute({children}) {
         const tokenExpiration = decoded.exp
         const now = Date.now / 1000
 
-        if (tokenExpiration > now) {
+        if (tokenExpiration < now) {
             await refreshToken()
         } else {
             setIsAuthorized(true)
