@@ -9,37 +9,27 @@ export default function Home() {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
 
-    const deleteNote = (id) => {
-        api
-            .delete(`/api/notes/delete/${id}/`)
-            .then((res) => {
-                if (res.status === 204) alert("Note deleted!");
-                else alert("Failed to delete note.");
-                getNotes();
-            })
-            .catch((error) => alert(error));
-    };
-
     const createNote = (e) => {
         e.preventDefault();
         api
             .post("/api/notes/", { content, title })
             .then((res) => {
-                if (res.status === 201) alert("Note created!");
-                else alert("Failed to make note.");
-                getNotes();
+                if (res.status === 201) {
+                    alert("Note created!");
+                    // Fetch the updated list of notes
+                    api.get("/api/notes/").then((res) => {
+                        setNotes(res.data);
+                    });
+                } else {
+                    alert("Failed to make note.");
+                }
             })
             .catch((err) => alert(err));
     };
 
     return (
         <div>
-            <div>
-                
-                {notes.map((note) => (
-                    <Note note={note} onDelete={deleteNote} key={note.id} />
-                ))}
-            </div>
+            
             <form onSubmit={createNote}>
                 <label htmlFor="title">Title:</label>
                 <br />

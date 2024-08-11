@@ -42,9 +42,9 @@ function App() {
     <>  
 
         <BrowserRouter>
-        <div className="fade-menu">
+        <header className="fade-menu">
           <FadeMenu />
-        </div>
+        </header>
         <Routes>
           <Route 
             path="/"

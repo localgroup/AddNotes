@@ -1,8 +1,13 @@
-import ViewNotes from "../components/ViewNotes";
 
+import React from 'react';
+import ViewNotes from '../components/ViewNotes.jsx';
 
-export default function ListNotes() {
-    const route = "/api/notes/";
+const ListNotes = () => {
+  return (
+    <div>
+      <ViewNotes />
+    </div>
+  );
+};
 
-  return <ViewNotes route={route} />;
-}
+export default ListNotes;

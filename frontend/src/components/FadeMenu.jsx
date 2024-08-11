@@ -67,8 +67,8 @@ export default function FadeMenu() {
           {isLoggedIn ? (
             
             <>
-            <ProtectedRoute>
             <MenuItem onClick={() => handleMenuItemClick('/')}>Home</MenuItem>
+            <ProtectedRoute>
             <MenuItem onClick={() => logout()}>Logout</MenuItem>
             <MenuItem onClick={() => handleMenuItemClick('/notes')}>Notes</MenuItem>
             </ProtectedRoute>
