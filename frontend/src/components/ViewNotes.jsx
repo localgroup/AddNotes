@@ -1,144 +1,87 @@
-// import { useEffect, useState } from "react";
-// import api from "../api";
-// import Note from "./Note";
-// import LoadingIndicator from "../components/LoadingIndicator";
-// import SimpleContainer from "./SimpleContainer";
-
-// export default function ViewNotes() {
-//   const [notes, setNotes] = useState([]);
-//   const [error, setError] = useState(null);
-//   const [loading, setLoading] = useState(false);
-
-//   useEffect(() => {
-//     setLoading(true);
-//     getNotes();
-//   }, []);
-
-//   const getNotes = () => {
-//     api
-//       .get("/api/notes/")
-//       .then((res) => res.data)
-//       .then((data) => {
-//         setNotes(data);
-//         setLoading(false);
-//       })
-//       .catch((err) => {
-//         setError(err.message);
-//         setLoading(false);
-//         console.error(err);
-//       });
-//   };
-
-//   const deleteNote = (id) => {
-//     api
-//       .delete(`/api/notes/delete/${id}`)
-//       .then((res) => {
-//         if (res.status === 204) alert("Note deleted!");
-//         else alert("Failed to delete note.");
-//         getNotes();
-//       })
-//       .catch((error) => {
-//         alert(error);
-//       });
-//   };
-
-//   return (
-//     <SimpleContainer>
-//       <div>
-//         <center>
-//           {loading && <LoadingIndicator />}
-//         </center>
-//       </div>
-//       {error ? (
-//         <p>Error: {error}</p>
-//       ) : (
-//         notes.map((note) => (
-//           <Note key={note.id} note={note} deleteNote={deleteNote} />
-//         ))
-//       )}
-//     </SimpleContainer>
-//   );
-// }
-
-
 import { useEffect, useState } from "react";
 import api from "../api";
 import Note from "./Note";
 import LoadingIndicator from "../components/LoadingIndicator";
-import SimpleContainer from "./SimpleContainer";
+import { Alert } from '@mui/material';
+import BasicStack from "./BasicStack";
 
 export default function ViewNotes() {
-  const [notes, setNotes] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+    const [notes, setNotes] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [alert, setAlert] = useState(null); 
 
-  useEffect(() => {
-    setLoading(true);
-    getNotes();
-  }, []);
+    useEffect(() => {
+      setLoading(true);
+      getNotes();
+    }, []);
 
-  const getNotes = () => {
-    api
-      .get("/api/notes/")
-      .then((res) => res.data)
-      .then((data) => {
-        console.log("Notes fetched successfully:", data);
-        setNotes(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching notes:", err);
-        setError(err.message);
-        setLoading(false);
-      });
-  };
+    const getNotes = () => {
+      api
+        .get("/api/notes/")
+        .then((res) => res.data)
+        .then((data) => {
+          setNotes(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+        });
+    };
 
-  const deleteNote = (id) => {
-    api
-      .delete(`/api/notes/delete/${id}`)
-      .then((res) => {
-        if (res.status === 204) alert("Note deleted!");
-        else alert("Failed to delete note.");
-        getNotes();
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  };
+    const deleteNote = (id) => {
+      api
+        .delete(`/api/notes/delete/${id}`)
+        .then((res) => {
+          if (res.status === 204) {
+            setAlert({ severity: "success", message: "Note deleted!" });
+          } else {
+            setAlert({ severity: "error", message: "Failed to delete note." });
+          }
+          getNotes();
+        })
+        .catch((error) => {
+          setAlert({ severity: "error", message: error.toString() });
+        });
+    };
 
-  if (loading) {
+    if (loading) {
+      return (
+        <BasicStack>
+          <div>
+            <center>
+              <LoadingIndicator />
+            </center>
+          </div>
+        </BasicStack>
+      );
+    }
+
+    if (error) {
+      return (
+        <BasicStack>
+          <Alert severity="error">{error}</Alert>
+        </BasicStack>
+      );
+    }
+
+    if (notes.length === 0) {
+      return (
+        <BasicStack>
+          <p>No notes found.</p>
+        </BasicStack>
+      );
+    }
+
     return (
-      <SimpleContainer>
-        <div>
-          <center>
-            <LoadingIndicator />
-          </center>
-        </div>
-      </SimpleContainer>
+      <BasicStack>
+        {alert && (
+          <Alert severity={alert.severity}>{alert.message}</Alert>
+        )}
+        {notes.map((note) => (
+          <Note key={note.id} note={note} deleteNote={deleteNote} />
+        ))}
+      </BasicStack>
     );
   }
-
-  if (error) {
-    return (
-      <SimpleContainer>
-        <p>Error: {error}</p>
-      </SimpleContainer>
-    );
-  }
-
-  if (notes.length === 0) {
-    return (
-      <SimpleContainer>
-        <p>No notes found.</p>
-      </SimpleContainer>
-    );
-  }
-
-  return (
-    <SimpleContainer>
-      {notes.map((note) => (
-        <Note key={note.id} note={note} deleteNote={deleteNote} />
-      ))}
-    </SimpleContainer>
-  );
-}
