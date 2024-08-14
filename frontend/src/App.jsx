@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import FadeMenu from "./components/FadeMenu";
 import ListNotes from "./pages/ListNotes"
 import { ACCESS_TOKEN } from './constants'
+import ResponsiveAppBar from "./components/ResponsiveAppBar"
 
 
 function Logout() {
@@ -43,7 +44,8 @@ function App() {
 
         <BrowserRouter>
         <header className="fade-menu">
-          <FadeMenu />
+          {/* <FadeMenu /> */}
+          <ResponsiveAppBar />
         </header>
         <Routes>
           <Route 
