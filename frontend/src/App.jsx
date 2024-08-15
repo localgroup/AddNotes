@@ -5,7 +5,6 @@ import Home from "./pages/Home"
 import Register from "./pages/Register"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
-import FadeMenu from "./components/FadeMenu";
 import ListNotes from "./pages/ListNotes"
 import { ACCESS_TOKEN } from './constants'
 import ResponsiveAppBar from "./components/ResponsiveAppBar"
@@ -37,15 +36,22 @@ function HomeRoute() {
   return <RegisterAndLogout />;
 }
 
+const pages = [
+  { name: 'notes', link: '/notes' },
+];
+
+const settings = [
+  { name: 'Profile', link: '/profile' },
+  { name: 'Logout', link: '/logout' }
+];
 
 function App() {
   return (
     <>  
 
         <BrowserRouter>
-        <header className="fade-menu">
-          {/* <FadeMenu /> */}
-          <ResponsiveAppBar />
+        <header>
+        <ResponsiveAppBar pages={pages} settings={settings} />
         </header>
         <Routes>
           <Route 
