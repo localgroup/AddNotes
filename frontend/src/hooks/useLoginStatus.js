@@ -16,12 +16,14 @@ const useLoginStatus = () => {
   const login = () => {
     setIsLoggedIn(true);
     navigate('/', { replace: true }); // Navigate to "/" and replace the current URL
+    window.location.reload()
   };
 
   const logout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem(ACCESS_TOKEN);
     navigate('/login', { replace: true }); // Navigate to "/login" and replace the current URL
+    window.location.reload()
   };
 
   return { isLoggedIn, login, logout };

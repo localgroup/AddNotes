@@ -42,8 +42,8 @@ const pages = [
 
 const settings = [
   { name: 'Profile', link: '/profile' },
-  { name: 'Logout', link: '/logout' }
 ];
+
 
 function App() {
   return (

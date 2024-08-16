@@ -15,13 +15,12 @@ import AdbIcon from '@mui/icons-material/Adb';
 import DeckRoundedIcon from '@mui/icons-material/DeckRounded';
 import { Link as RouterLink } from 'react-router-dom';
 import useLoginStatus from '../hooks/useLoginStatus';
-import ProtectedRoute from './ProtectedRoute';
 
 
 function ResponsiveAppBar({ pages, settings }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { isLoggedIn, login, logout } = useLoginStatus();
+  const { isLoggedIn, logout } = useLoginStatus();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -37,6 +36,7 @@ function ResponsiveAppBar({ pages, settings }) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
 
   return (
     <AppBar position="static">
@@ -137,7 +137,7 @@ function ResponsiveAppBar({ pages, settings }) {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/avatar.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -161,6 +161,10 @@ function ResponsiveAppBar({ pages, settings }) {
                   <Typography textAlign="center">{setting.name}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem onClick={logout}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
+
             </Menu>
           </Box>
           )}
