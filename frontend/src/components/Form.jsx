@@ -35,6 +35,12 @@ export default function Form({route, method}) {
     }
 
     const head = method === "login" ? "Login" : "Register"
+    const new_user = method === "login" && (
+        <p>
+          Don't have an account? <a href="/register/"> Register</a>
+        </p>
+      );
+
 
     return (
         <form onSubmit={handleSubmit} className="form-container">
@@ -57,6 +63,8 @@ export default function Form({route, method}) {
             <button className="form-button" type="submit">
                 {head}
             </button>
+            <br />
+            {new_user}
         </form>
     )
 }

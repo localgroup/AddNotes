@@ -1,11 +1,12 @@
 
 import React from 'react';
 import ViewNotes from '../components/ViewNotes.jsx';
+import Note from '../components/Note.jsx';
 
 const ListNotes = () => {
   return (
     <div>
-      <ViewNotes />
+      <Note />
     </div>
   );
 };
