@@ -10,10 +10,9 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
+import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import "../styles/Card.css"
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -38,40 +37,39 @@ export default function NotesCard({ title, content, formattedDate, onDelete, ima
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
+    <Card sx={{ maxWidth: 345 }} className='Card'>
+      <CardHeader className='CardHeader'
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
+          <Avatar 
+              alt="Remy Sharp" 
+              src="/static/images/avatar/avatar.jpg" 
+              sx={{ bgcolor: red[500] }} 
+              aria-label="recipe" 
+              className="MuiAvatar-root"
+          />
+
         }
         action={
           <IconButton aria-label="settings" onClick={handleDelete}>
-            <MoreVertIcon />
+            <DeleteIcon fontSize="inherit" />
           </IconButton>
         }
-        title={title}
+        title={title.toUpperCase()}
         subheader={formattedDate}
       />
-      <CardMedia
+      <CardMedia className='CardMedia'
         component="img"
         height="194"
         image={image}
         alt="Paella dish"
       />
-      <CardContent>
+      <CardContent className='CardContent'>
         <Typography variant="body2" color="text.secondary">
           {content}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
+      <CardActions disableSpacing className='CardActions MuiTypography-root'>
+        <ExpandMore className='ExpandMore'
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
@@ -80,20 +78,11 @@ export default function NotesCard({ title, content, formattedDate, onDelete, ima
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse in={expanded} timeout="auto" unmountOnExit className='Collapse MuiTypography-root'>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>Details:</Typography>
           <Typography paragraph>
-            Null.
-          </Typography>
-          <Typography paragraph>
-            Null.
-          </Typography>
-          <Typography paragraph>
-            Null.
-          </Typography>
-          <Typography>
-            Null.
+            ...
           </Typography>
         </CardContent>
       </Collapse>
