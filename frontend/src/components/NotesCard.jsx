@@ -12,21 +12,23 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useState } from 'react';
 import "../styles/Card.css"
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+  })(({ theme, expand }) => ({
+    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  }));
 
 export default function NotesCard({ title, content, formattedDate, onDelete, image }) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [notesImage, setImage] = useState(null);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -57,12 +59,13 @@ export default function NotesCard({ title, content, formattedDate, onDelete, ima
         title={title.toUpperCase()}
         subheader={formattedDate}
       />
+      {notesImage &&
       <CardMedia className='CardMedia'
         component="img"
         height="194"
         image={image}
-        alt="Paella dish"
-      />
+        alt="..."
+      /> }
       <CardContent className='CardContent'>
         <Typography variant="body2" color="text.secondary">
           {content}

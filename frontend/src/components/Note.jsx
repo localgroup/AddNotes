@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import api from "../api";
-import { Alert } from '@mui/material';
 import NotesCard from './NotesCard';import "../styles/Card.css"
+import ActionAlerts from './ActionAlerts';
 
 const Note = () => {
   const [notes, setNotes] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState(null);
+  const [alert, setAlert] = useState({ open: false, severity: '', message: '' });
 
   useEffect(() => {
     setLoading(true);
@@ -33,14 +33,14 @@ const Note = () => {
       .delete(`/api/notes/delete/${id}`)
       .then((res) => {
         if (res.status === 204) {
-          setAlert({ severity: "success", message: "Note deleted!" });
+          setAlert({ open: true, severity: "success", message: "Note deleted!" });
         } else {
-          setAlert({ severity: "error", message: "Failed to delete note." });
+          setAlert({ open: true, severity: "error", message: "Failed to delete note." });
         }
         getNotes();
       })
       .catch((error) => {
-        setAlert({ severity: "error", message: error.toString() });
+        setAlert({ open: true, severity: "error", message: error.toString() });
       });
   };
 
@@ -48,7 +48,12 @@ const Note = () => {
     <div>
       <div>
         {alert && (
-          <Alert severity={alert.severity}>{alert.message}</Alert>
+          <ActionAlerts
+          severity={alert.severity}
+          message={alert.message}
+          open={alert.open}
+          onClose={() => setAlert({ ...alert, open: false })}
+        />
         )}
       </div>
       <div className="CardContainer">

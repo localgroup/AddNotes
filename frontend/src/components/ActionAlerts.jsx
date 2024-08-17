@@ -4,47 +4,24 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Stack from '@mui/material/Stack';
 
-export default function ActionAlerts() {
-  const [open, setOpen] = React.useState(true);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function ActionAlerts({ severity, message, open, onClose }) {
   return (
     <Stack sx={{ width: '100%' }} spacing={2}>
       {open && (
         <Alert
-          severity="warning"
+          severity={severity}
           action={
             <IconButton
               aria-label="close"
               color="inherit"
-              onClick={handleClose}
+              onClick={onClose}
               size="small"
             >
               <CloseIcon />
             </IconButton>
           }
         >
-          This Alert displays the default close icon.
-        </Alert>
-      )}
-      {open && (
-        <Alert
-          severity="success"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              onClick={handleClose}
-              size="small"
-            >
-              <CloseIcon />
-            </IconButton>
-          }
-        >
-          This Alert uses a Button component for its action.
+          {message}
         </Alert>
       )}
     </Stack>

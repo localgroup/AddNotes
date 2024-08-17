@@ -1,8 +1,8 @@
 import { useState } from "react";
 import api from "../api";
-import { Alert } from '@mui/material';
 import "../styles/Home.css"
 import CreateNotesForm from "../components/CreateNotesForm";
+import ActionAlerts from '../components/ActionAlerts';
 
 
 export default function Home() {
@@ -18,16 +18,18 @@ export default function Home() {
         .post("/api/notes/", { content, title })
         .then((res) => {
           if (res.status === 201) {
-            setAlert({ severity: "success", message: "Note created" });
+            setAlert({ open: true, severity: "success", message: "Note created" });
             api.get("/api/notes/").then((res) => {
               setNotes(res.data);
+              setContent("");
+              setTitle("");
             });
           } else {
-            setAlert({ severity: "error", message: "Failed to create note." });
+            setAlert({ open: true, severity: "error", message: "Failed to create note." });
           }
         })
         .catch((err) => {
-          setAlert({ severity: "error", message: err.toString() });
+          setAlert({ open: true, severity: "error", message: err.toString() });
         });
     };
 
@@ -35,7 +37,12 @@ export default function Home() {
     return (
       <div>
         {alert && (
-          <Alert severity={alert.severity}>{alert.message}</Alert>
+          <ActionAlerts
+          severity={alert.severity}
+          message={alert.message}
+          open={alert.open}
+          onClose={() => setAlert({ ...alert, open: false })}
+        />
         )}
         <CreateNotesForm 
             createNote={createNote} 
