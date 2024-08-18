@@ -8,6 +8,8 @@
   }
   
   .Card {
+    display: flex;
+    flex-direction: column; /* Ensures the card content stacks vertically */
     margin: 20px;
     flex-basis: calc(33.33% - 40px);
     max-width: calc(33.33% - 40px);
@@ -62,6 +64,7 @@
   }
   
   .CardContent {
+    flex-grow: 1; /* Allows CardContent to take up available space */
     padding: 24px;
     display: flex;
     flex-direction: column;
@@ -69,6 +72,7 @@
   }
   
   .CardActions {
+    margin-top: auto; /* Pushes CardActions to the bottom */
     padding: 16px 24px;
     justify-content: space-between;
     border-top: 1px solid #ddd;

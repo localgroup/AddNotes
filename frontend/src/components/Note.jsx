@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import api from "../api";
 import NotesCard from './NotesCard';import "../styles/Card.css"
 import ActionAlerts from './ActionAlerts';
+import LoadingIndicator from "../components/LoadingIndicator";
+
 
 const Note = () => {
   const [notes, setNotes] = useState([]);
@@ -46,6 +48,13 @@ const Note = () => {
 
   return (
     <div>
+      <div>
+        {loading && 
+        <center>
+          <LoadingIndicator />
+        </center>
+        }
+      </div>
       <div>
         {alert && (
           <ActionAlerts
