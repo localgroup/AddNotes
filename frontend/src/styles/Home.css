@@ -1,68 +1,58 @@
 /* Container for the whole page */
 div {
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Styles for the notes section */
-  .notes-section {
-    margin-bottom: 2rem;
-  }
-  
-  .notes-section h2 {
-    color: #333;
-    font-size: 24px;
-  }
-  
-  /* Styles for individual notes - assuming your Note component has some container element */
-  .note {
-    background-color: #f9f9f9;
-    border-left: 5px solid #007bff;
-    margin: 10px 0;
-    padding: 10px 15px;
-    border-radius: 5px;
-  }
-  
-  /* Styles for the form section */
-  form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: auto;
-  }
-  
-  form h2 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  form label {
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  form input,
-  form textarea {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  form input[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  form input[type="submit"]:hover {
-    background-color: #0056b3;
-  }
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font stack */
+}
+
+/* Styles for the form section */
+form {
+  background-color: #ffffff; /* White background for the form */
+  padding: 24px; /* Slightly increased padding */
+  border-radius: 12px; /* Larger border-radius for rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* More pronounced shadow for depth */
+  max-width: 600px; /* Increased max-width for larger forms */
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styles for form labels */
+form label {
+  font-weight: 600; /* Bold labels for better readability */
+  margin-bottom: 6px; /* Space between label and input */
+  color: #333; /* Darker color for labels */
+}
+
+/* Styles for form input fields */
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px; /* Increased padding for better spacing */
+  margin: 8px 0; /* Margin between fields */
+  border: 1px solid #ddd; /* Light border color for a subtle look */
+  border-radius: 6px; /* Slightly larger border-radius */
+  box-sizing: border-box;
+  font-size: 16px; /* Larger font size for better readability */
+}
+
+/* Styles for textarea specifically */
+form textarea {
+  resize: vertical; /* Allow vertical resizing only */
+  min-height: 100px; /* Minimum height for the textarea */
+}
+
+/* Styles for the submit button */
+form input[type="submit"] {
+  background-color: #007bff; /* Blue background */
+  color: #ffffff; /* White text color */
+  padding: 12px 24px; /* Larger padding for a better button size */
+  border: none;
+  border-radius: 6px; /* Matching border-radius with input fields */
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the submit button */
+form input[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

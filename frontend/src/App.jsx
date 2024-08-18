@@ -52,6 +52,7 @@ function App() {
         <BrowserRouter>
         <header>
         <ResponsiveAppBar pages={pages} settings={settings} />
+        <br /><br /><br />
         </header>
         <Routes>
           <Route 

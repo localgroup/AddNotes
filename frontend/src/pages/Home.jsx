@@ -41,7 +41,7 @@ export default function Home() {
           onClose={() => setAlert({ ...alert, open: false })}
         />
       )}
-      <CreateNotesForm onSubmit={createNote} />
+      <CreateNotesForm onSubmit={createNote} className="CreateNotesForm"/>
     </div>
   );
 }

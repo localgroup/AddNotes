@@ -15,7 +15,6 @@ import "../styles/Card.css"
 
 
 export default function NotesCard({ title, content, formattedDate, onDelete, image }) {
-  const [notesImage, setImage] = useState(null);
 
 
   const handleDelete = () => {
@@ -41,13 +40,6 @@ export default function NotesCard({ title, content, formattedDate, onDelete, ima
         }
         title={title.toUpperCase()}
       />
-      {notesImage &&
-      <CardMedia className='CardMedia'
-        component="img"
-        height="194"
-        image={image}
-        alt="..."
-      /> }
       <CardContent className='CardContent'>
         <Typography variant="body2" color="text.secondary">
           {content}

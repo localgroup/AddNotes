@@ -1,31 +1,32 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import InputField from "../components/InputField";
 
 export default function CreateNotesForm({ onSubmit }) {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="title">Title:</label>
-      <br />
-      <input
-        type="text"
+      <InputField
         id="title"
+        label="Title"
+        type="text"
+        error={!!errors.title}
+        helperText={errors.title ? errors.title.message : ''}
         {...register('title', { required: 'Title is required' })}
       />
-      {errors.title && <p>{errors.title.message}</p>}
-
-      <label htmlFor="content">Content:</label>
-      <br />
-      <textarea
+        <br /><br />
+      <InputField
         id="content"
+        label="Content"
+        multiline
+        rows={2}
+        error={!!errors.content}
+        helperText={errors.content ? errors.content.message : ''}
         {...register('content', { required: 'Content is required' })}
-      ></textarea>
-      {errors.content && <p>{errors.content.message}</p>}
+      />
 
-      <br />
       <input type="submit" value="Submit" />
     </form>
   );
 }
-
