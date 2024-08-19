@@ -1,0 +1,35 @@
+div {
+  background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
+}
+
+.form-container {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: auto;
+}
+
+.submit-button {
+  position: absolute;
+  right: -24px; /* Adjust to move the icon half outside the form */
+  bottom: -24px; /* Adjust to move the icon half outside the form */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-icon {
+  font-size: 64px; /* Increase the size of the icon */
+  background-color: rgb(96, 68, 233);
+  color: white;
+  border-radius: 50%; /* Ensure the icon background is circular */
+  padding: 12px; /* Adjust padding for the background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

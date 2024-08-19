@@ -33,15 +33,17 @@ export default function Home() {
 
   return (
     <div>
-      {alert && (
-        <ActionAlerts
-          severity={alert.severity}
-          message={alert.message}
-          open={alert.open}
-          onClose={() => setAlert({ ...alert, open: false })}
-        />
-      )}
-      <CreateNotesForm onSubmit={createNote} className="CreateNotesForm"/>
+        {alert && (
+          <ActionAlerts
+            severity={alert.severity}
+            message={alert.message}
+            open={alert.open}
+            onClose={() => setAlert({ ...alert, open: false })}
+          />
+        )}
+
+        <CreateNotesForm onSubmit={createNote} className="CreateNotesForm"/>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br />
     </div>
   );
 }

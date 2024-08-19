@@ -1,58 +1,6 @@
 /* Container for the whole page */
 div {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font stack */
+  background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
 }
 
-/* Styles for the form section */
-form {
-  background-color: #ffffff; /* White background for the form */
-  padding: 24px; /* Slightly increased padding */
-  border-radius: 12px; /* Larger border-radius for rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* More pronounced shadow for depth */
-  max-width: 600px; /* Increased max-width for larger forms */
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Styles for form labels */
-form label {
-  font-weight: 600; /* Bold labels for better readability */
-  margin-bottom: 6px; /* Space between label and input */
-  color: #333; /* Darker color for labels */
-}
-
-/* Styles for form input fields */
-form input,
-form textarea {
-  width: 100%;
-  padding: 12px; /* Increased padding for better spacing */
-  margin: 8px 0; /* Margin between fields */
-  border: 1px solid #ddd; /* Light border color for a subtle look */
-  border-radius: 6px; /* Slightly larger border-radius */
-  box-sizing: border-box;
-  font-size: 16px; /* Larger font size for better readability */
-}
-
-/* Styles for textarea specifically */
-form textarea {
-  resize: vertical; /* Allow vertical resizing only */
-  min-height: 100px; /* Minimum height for the textarea */
-}
-
-/* Styles for the submit button */
-form input[type="submit"] {
-  background-color: #007bff; /* Blue background */
-  color: #ffffff; /* White text color */
-  padding: 12px 24px; /* Larger padding for a better button size */
-  border: none;
-  border-radius: 6px; /* Matching border-radius with input fields */
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-}
-
-/* Hover effect for the submit button */
-form input[type="submit"]:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}

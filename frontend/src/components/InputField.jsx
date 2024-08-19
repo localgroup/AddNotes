@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import TextField from '@mui/material/TextField';
 
-const InputField = ({ id, label, type, error, helperText, ...props }) => {
+export default forwardRef(function InputField(props, ref) {
+  const { id, label, type, error, helperText, ...rest } = props;
+
   return (
     <TextField
       id={id}
@@ -11,9 +13,8 @@ const InputField = ({ id, label, type, error, helperText, ...props }) => {
       helperText={helperText}
       variant="outlined"
       fullWidth
-      {...props}
+      inputRef={ref}
+      {...rest}
     />
   );
-};
-
-export default InputField;
+});
