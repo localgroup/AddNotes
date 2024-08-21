@@ -69,6 +69,8 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
   }
   
   .CardActions {

@@ -10,11 +10,10 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useState } from 'react';
 import "../styles/Card.css"
 
 
-export default function NotesCard({ title, content, formattedDate, onDelete, image }) {
+export default function NotesCard({ title, content, formattedDate, onDelete }) {
 
 
   const handleDelete = () => {
@@ -41,8 +40,8 @@ export default function NotesCard({ title, content, formattedDate, onDelete, ima
         title={title.toUpperCase()}
       />
       <CardContent className='CardContent'>
-        <Typography variant="body2" color="text.secondary">
-          {content}
+        <Typography variant="body2" color="text.secondary" >
+          <p dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br />') }} />
         </Typography>
       </CardContent>
       <CardActions disableSpacing className='CardActions MuiTypography-root'>
