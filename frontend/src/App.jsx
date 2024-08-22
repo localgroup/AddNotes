@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import ListNotes from "./pages/ListNotes"
 import { ACCESS_TOKEN } from './constants'
 import ResponsiveAppBar from "./components/ResponsiveAppBar"
+import ProfilePage from "./pages/ProfilePage"
 
 
 function Logout() {
@@ -41,7 +42,7 @@ const pages = [
 ];
 
 const settings = [
-  { name: 'Profile', link: '/profile' },
+  { name: 'Profile', link: '/user/profile' },
 ];
 
 
@@ -69,6 +70,7 @@ function App() {
           <Route path="/login" element={<LoginRoute />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<HomeRoute />} />
+          <Route path="/user/profile/" element={<ProfilePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </BrowserRouter>

@@ -1,10 +1,32 @@
-import axios from 'axios';
+import api from "../api";
+import { useState, useEffect } from 'react';
 
-axios.get('/api/user/profile/')
-    .then(response => {
-        const profile = response.data;
-        // Do something with the profile
-    })
-    .catch(error => {
-        console.error(error);
-    });
+export default function Profile() {
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        getProfile();
+    }, []);
+
+    function getProfile() {
+        api
+          .get('/api/user/profile/')
+          .then((res) => {
+            console.log(res.data); // Add this line
+            setUser(res.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+
+    return (
+        <div>
+          {user && user.id ? (
+            <div>Hello {user.id}!</div>
+          ) : (
+            <div>Loading...</div>
+          )}
+        </div>
+      )
+}
