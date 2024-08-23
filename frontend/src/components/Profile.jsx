@@ -1,5 +1,7 @@
 import api from "../api";
 import { useState, useEffect } from 'react';
+import "../styles/Card.css"
+
 
 export default function Profile() {
     const [user, setUser] = useState({});
@@ -22,10 +24,10 @@ export default function Profile() {
 
     return (
         <div>
-          {user && user.id ? (
-            <div>Hello {user.id}!</div>
+          {user && user.username ? (
+            <div className="Card user-profile">Hello {user.username}!</div>
           ) : (
-            <div>Loading...</div>
+            <div className="Card user-profile">No profile data available.</div>
           )}
         </div>
       )

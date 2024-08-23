@@ -105,4 +105,17 @@
     font-size: 14px;
     color: #666;
   }
+
+  .Card.user-profile {
+    background-color: #f7f7f7;
+    border-color: #ccc;
+    padding: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .Card.user-profile:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
   
